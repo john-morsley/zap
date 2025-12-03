@@ -13,7 +13,7 @@ env:
       authentication:
         method: "script"
         parameters:
-          script: "./api-auth.js"
+          script: "./scripts/auth.js"
           scriptEngine: "Graal.js"
           auth_endpoint: "https://localhost:5001/authorisation"
           client_id: "ABC"
@@ -25,7 +25,7 @@ env:
       sessionManagement:
         method: "script"
         parameters:
-          script: "./api-session.js"
+          script: "./scripts/session.js"
           scriptEngine: "Graal.js"
       users:
         - name: "test-client"
@@ -46,8 +46,8 @@ jobs:
       action: "add"
       type: "httpsender"
       engine: "Graal.js"
-      name: "api-httpsender.js"
-      file: "./api-httpsender.js"
+      name: "httpsender.js"
+      file: "./scripts/httpsender.js"
 
   - type: "delay"
     parameters:
