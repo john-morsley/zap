@@ -1,45 +1,43 @@
-var token = null;
+var LogManager = Java.type('org.apache.logging.log4j.LogManager');
+var logger = LogManager.getLogger('httpsender.js');
 
 function sendingRequest(msg, initiator, helper) {
-  // If this is the auth or health request, don't modify it
+
+  logger.info("[HTTPSENDER] \\/ --------------------- SENDING REQUEST --------------------- \\/");
+
   var url = msg.getRequestHeader().getURI().toString();
+  var method = msg.getRequestHeader().getMethod();
   
-  print("[HTTPSENDER] Sending request to: " + url);
+  logger.info("[HTTPSENDER] Sending " + method + " request to: " + url);
   
-  if (url.toLowerCase().indexOf("/authorisation") !== -1) {
-    // Auth endpoint doesn't need auth token
-    print("[HTTPSENDER] Skipping auth for: " + url);
-    return;
-  }
-  
-  // For all other requests, add the token if we have one
-  if (token) {
-    print("[HTTPSENDER] Adding Authorization header");
-    msg.getRequestHeader().setHeader("Authorization", "Bearer " + token);
+  // Check if Authorization header is present
+  var authHeader = msg.getRequestHeader().getHeader("Authorization");
+  if (authHeader) {
+    logger.info("[HTTPSENDER] Authorization header present: " + authHeader.substring(0, 20) + "...");
   } else {
-    print("[HTTPSENDER] No token available yet");
+    logger.info("[HTTPSENDER] No Authorization header");
   }
+
+  logger.info("[HTTPSENDER] /\\ --------------------- SENDING REQUEST --------------------- /\\");
 }
 
 function responseReceived(msg, initiator, helper) {
-  // Check if this is a response from the auth endpoint
+
+  logger.info("[HTTPSENDER] \\/ -------------------- RESPONSE RECEIVED -------------------- \\/");
+
   var url = msg.getRequestHeader().getURI().toString();
+  var statusCode = msg.getResponseHeader().getStatusCode();
+  var responseBodyLength = msg.getResponseBody().length();
   
-  print("[HTTPSENDER] Response received from: " + url);
+  logger.info("[HTTPSENDER] Response received from: " + url);
+  logger.info("[HTTPSENDER] Status: " + statusCode + ", Body length: " + responseBodyLength + " bytes");
   
+  // Log if this is the auth endpoint
   if (url.toLowerCase().indexOf("/authorisation") !== -1) {
-    print("[HTTPSENDER] Auth endpoint response detected");
-    // Extract the token from the response
-    var responseBody = msg.getResponseBody().toString();
-    if (responseBody && responseBody.length > 0) {
-      token = responseBody.trim();
-      // Remove quotes if present
-      token = token.replace(/^"(.*)"$/, '$1');
-      print("[HTTPSENDER] Token extracted: " + token.substring(0, 20) + "...");
-    } else {
-      print("[HTTPSENDER] Empty response body from auth endpoint");
-    }
+    logger.info("[HTTPSENDER] Auth endpoint response detected");
   }
+
+  logger.info("[HTTPSENDER] /\\ -------------------- RESPONSE RECEIVED -------------------- /\\");
 }
 
 function getRequiredParamsNames() {

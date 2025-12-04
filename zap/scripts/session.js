@@ -1,38 +1,53 @@
+var LogManager = Java.type('org.apache.logging.log4j.LogManager');
+var logger = LogManager.getLogger('session.js');
+
 var token = null;
 
 function extractWebSession(sessionWrapper) {
-  print("[SESSION] Extracting web session...");
+
+  logger.info("[SESSION] \/ --------------------- EXTRACTING SESSION --------------------- \/");
+
+  logger.info("[SESSION] Extracting web session...");
+
   // Extract token from the authentication response
   var msg = sessionWrapper.getHttpMessage();
   var responseBody = msg.getResponseBody().toString();
   
-  print("[SESSION] Response body length: " + responseBody.length);
+  logger.info("[SESSION] Response body length: " + responseBody.length);
   
   if (responseBody && responseBody.length > 0) {
     token = responseBody.trim();
     // Remove quotes if present
     token = token.replace(/^"(.*)"$/, '$1');
     sessionWrapper.getSession().setValue("token", token);
-    print("[SESSION] Token extracted and stored: " + token.substring(0, 20) + "...");
+    logger.info("[SESSION] Token extracted and stored: " + token.substring(0, 20) + "...");
   } else {
-    print("[SESSION] No token found in response");
+    logger.warn("[SESSION] No token found in response");
   }
+
+  logger.info("[SESSION] /\\ --------------------- EXTRACTING SESSION --------------------- /\\");
 }
 
 function processMessageToMatchSession(sessionWrapper) {
-  print("[SESSION] Processing message to match session...");
+
+  logger.info("[SESSION] \/ --------------------- PROCESSING MESSAGE TO MATCH SESSION --------------------- \/");
+
+  logger.info("[SESSION] Processing message to match session...");
+
   // Add the stored token to outgoing requests
   var msg = sessionWrapper.getHttpMessage();
   var session = sessionWrapper.getSession();
   var storedToken = session.getValue("token");
   
   if (storedToken) {
-    print("[SESSION] Adding Authorization header with token");
+    logger.info("[SESSION] Adding Authorization header with token");
     msg.getRequestHeader().setHeader("Authorization", "Bearer " + storedToken);
   } else {
-    print("[SESSION] No token available to add");
+    logger.warn("[SESSION] No token available to add");
   }
   
+  logger.info("[SESSION] /\\ --------------------- PROCESSING MESSAGE TO MATCH SESSION --------------------- /\\");
+
   return msg;
 }
 
@@ -45,9 +60,15 @@ function getOptionalParamsNames() {
 }
 
 function clearWebSessionIdentifiers(sessionWrapper) {
-  print("[SESSION] Clearing web session identifiers...");
+
+  logger.info("[SESSION] \/ --------------------- CLEARING SESSION --------------------- \/");
+
+  logger.info("[SESSION] Clearing web session identifiers...");
+
   var session = sessionWrapper.getSession();
   session.setValue("token", null);
   token = null;
-  print("[SESSION] Session cleared");
+  logger.info("[SESSION] Session cleared");
+
+  logger.info("[SESSION] /\\ --------------------- CLEARING SESSION --------------------- /\\");
 }

@@ -1,5 +1,11 @@
+var LogManager = Java.type('org.apache.logging.log4j.LogManager');
+var logger = LogManager.getLogger('auth.js');
+
 function authenticate(helper, paramsValues, credentials) {
-  print("[AUTH] Starting authentication...");
+
+  logger.info("[AUTH] \\/ --------------------- AUTHENTICATING --------------------- \\/");
+
+  logger.info("[AUTH] Starting authentication...");
   
   var HttpRequestHeader = Java.type('org.parosproxy.paros.network.HttpRequestHeader');
   var HttpHeader = Java.type('org.parosproxy.paros.network.HttpHeader');
@@ -9,12 +15,12 @@ function authenticate(helper, paramsValues, credentials) {
   var clientId = paramsValues.get("client_id");
   var clientSecret = paramsValues.get("client_secret");
   
-  print("[AUTH] Endpoint: " + authEndpoint);
-  print("[AUTH] Client ID: " + clientId);
+  logger.info("[AUTH] Endpoint: " + authEndpoint);
+  logger.info("[AUTH] Client ID: " + clientId);
   
   // Build URL with query parameters
   var authUrl = authEndpoint + "?id=" + clientId + "&secret=" + clientSecret;
-  print("[AUTH] Full URL: " + authUrl);
+  logger.info("[AUTH] Full URL: " + authUrl);
   
   // Create POST request
   var msg = helper.prepareMessage();
@@ -27,12 +33,14 @@ function authenticate(helper, paramsValues, credentials) {
   msg.setRequestHeader(requestHeader);
   
   // Send the request
-  print("[AUTH] Sending authentication request...");
+  logger.info("[AUTH] Sending authentication request...");
   helper.sendAndReceive(msg);
   
-  print("[AUTH] Response status: " + msg.getResponseHeader().getStatusCode());
-  print("[AUTH] Response body: " + msg.getResponseBody().toString());
+  logger.info("[AUTH] Response status: " + msg.getResponseHeader().getStatusCode());
+  logger.info("[AUTH] Response body: " + msg.getResponseBody().toString());
   
+  logger.info("[AUTH] /\\ -------------------- AUTHENTICATING -------------------- /\\");
+
   return msg;
 }
 

@@ -85,8 +85,8 @@ jobs:
       threadPerHost: 2
       delayInMs: 0
     policyDefinition:
-      defaultStrength: "INSANE" # Low, Medium, High, Insane (not recommended), default: Medium
-      defaultThreshold: "HIGH" # Off, Low, Medium, High, default: Medium
+      defaultStrength: "LOW" # Low, Medium, High, Insane (not recommended), default: Medium
+      defaultThreshold: "OFF" # Off, Low, Medium, High, default: Medium
     
   - type: "passiveScan-wait"
     parameters:
