@@ -1,5 +1,4 @@
-﻿
-namespace Morsley.UK.ZAP.SwaggerSplitter.Console;
+﻿namespace Morsley.UK.ZAP.SwaggerSplitter.Console;
 
 internal class Display
 {
