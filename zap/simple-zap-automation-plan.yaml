@@ -39,9 +39,6 @@ env:
     progressToStdout: true
   vars:
     target: "https://localhost:5001"
-    auth_endpoint: "https://localhost:5001/authorisation"
-    client_id: "ABC"
-    client_secret: "123"
 
 jobs:
   - type: "script"
@@ -85,8 +82,8 @@ jobs:
       threadPerHost: 2
       delayInMs: 0
     policyDefinition:
-      defaultStrength: "LOW" # Low, Medium, High, Insane (not recommended), default: Medium
-      defaultThreshold: "OFF" # Off, Low, Medium, High, default: Medium
+      defaultStrength: "HIGH" # Low, Medium, High, Insane (not recommended), default: Medium
+      defaultThreshold: "MEDIUM" # Off, Low, Medium, High, default: Medium
     
   - type: "passiveScan-wait"
     parameters:

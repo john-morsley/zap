@@ -30,11 +30,15 @@ function authenticate(helper, paramsValues, credentials) {
     HttpHeader.HTTP11
   );
   
-  // Set required headers for POST request
-  requestHeader.setHeader("Content-Type", "application/x-www-form-urlencoded");
-  requestHeader.setHeader("Content-Length", "0");
-  
   msg.setRequestHeader(requestHeader);
+  
+  // Set required headers for POST request (must be set after setRequestHeader)
+  msg.getRequestHeader().setHeader("Content-Type", "application/json");
+  msg.getRequestHeader().setHeader("Content-Length", "0");
+  
+  // Log the headers to verify they're set
+  var contentType = msg.getRequestHeader().getHeader("Content-Type");
+  logger.info("[AUTH] Content-Type header set to: " + contentType);
   
   // Send the request
   logger.info("[AUTH] Sending authentication request...");

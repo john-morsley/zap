@@ -30,7 +30,7 @@ function extractWebSession(sessionWrapper) {
 
 function processMessageToMatchSession(sessionWrapper) {
 
-  logger.info("[SESSION] \/ --------------------- PROCESSING MESSAGE TO MATCH SESSION --------------------- \/");
+  logger.info("[SESSION] \\/ --------------------- PROCESSING MESSAGE TO MATCH SESSION --------------------- \\/");
 
   logger.info("[SESSION] Processing message to match session...");
 
@@ -61,7 +61,7 @@ function getOptionalParamsNames() {
 
 function clearWebSessionIdentifiers(sessionWrapper) {
 
-  logger.info("[SESSION] \/ --------------------- CLEARING SESSION --------------------- \/");
+  logger.info("[SESSION] \\/ --------------------- CLEARING SESSION --------------------- \\/");
 
   logger.info("[SESSION] Clearing web session identifiers...");
 
