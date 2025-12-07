@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Morsley.UK.ZAP.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "--zapFolder \"C:\\Program Files\\ZAP\\Zed Attack Proxy\" --zapJar \"zap-2.16.1.jar\" --requiredJavaVersion 11 --headless true --planFolder \"C:\\Development\\GitHub\\zap\\src\\Morsley.UK.ZAP.Console\\plans\" --templatePlanFilename \"zap-automation-plan-with-authentication-template.yaml\""
+    }
+  }
+}

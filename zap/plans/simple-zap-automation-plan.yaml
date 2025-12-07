@@ -13,7 +13,7 @@ env:
       authentication:
         method: "script"
         parameters:
-          script: "./scripts/auth.js"
+          script: "../scripts/auth.js"
           scriptEngine: "Graal.js"
           auth_endpoint: "https://localhost:5001/authorisation"
           client_id: "ABC"
@@ -28,7 +28,7 @@ env:
       sessionManagement:
         method: "script"
         parameters:
-          script: "./scripts/session.js"
+          script: "../scripts/session.js"
           scriptEngine: "Graal.js"
       users:
         - name: "test-client"
@@ -47,7 +47,7 @@ jobs:
       type: "httpsender"
       engine: "Graal.js"
       name: "httpsender.js"
-      file: "./scripts/httpsender.js"
+      file: "../scripts/httpsender.js"
 
   - type: "delay"
     parameters:
@@ -55,7 +55,7 @@ jobs:
 
   - type: "openapi"
     parameters:
-      apiFile: "./swagger.json"
+      apiFile: "../swagger/swagger.json"
       context: "simple-auth-api"
       targetUrl: "https://localhost:5001"
 
@@ -83,7 +83,7 @@ jobs:
       delayInMs: 0
     policyDefinition:
       defaultStrength: "HIGH" # Low, Medium, High, Insane (not recommended), default: Medium
-      defaultThreshold: "MEDIUM" # Off, Low, Medium, High, default: Medium
+      defaultThreshold: "HIGN" # Off, Low, Medium, High, default: Medium
     
   - type: "passiveScan-wait"
     parameters:
@@ -93,7 +93,7 @@ jobs:
   - type: "report"
     parameters:
       template: "traditional-md"
-      reportDir: "./reports"
+      reportDir: "../reports"
       reportFile: "simple-api-report-{{yyyy-MM-dd-HH-mm-ss}}-[[site]]"
       reportTitle: "Simple Auth API ZAP Scan Report"
       reportDescription: "Automated security scan of Simple Auth API"

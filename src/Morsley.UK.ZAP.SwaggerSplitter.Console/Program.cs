@@ -2,15 +2,15 @@
 
 string? swaggerUrl = null;
 
-Arguments.Process(args, ref swaggerUrl);
-Arguments.Gather(ref swaggerUrl);
-Arguments.Output(swaggerUrl);
-Arguments.Verify(swaggerUrl);
+//Arguments.Process(args, ref swaggerUrl);
+//Arguments.Gather(ref swaggerUrl);
+//Arguments.Output(swaggerUrl);
+//Arguments.Verify(swaggerUrl);
 
-var fullSwaggerJson = await Arguments.GetJson(swaggerUrl!);
-var splitSwaggerJson = SwaggerSplitter.Split(fullSwaggerJson!);
+//var fullSwaggerJson = await Arguments.GetJson(swaggerUrl!);
+//var splitSwaggerJson = SwaggerSplitter.Split(fullSwaggerJson!);
 
-Persistence.SaveAsFiles(splitSwaggerJson);
+//Persistence.SaveAsFiles(splitSwaggerJson);
 
 Display.Blank();
 Display.Mute("Finished");

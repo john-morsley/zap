@@ -1,2 +1,3 @@
-﻿global using Morsley.UK.ZAP.SwaggerSplitter.Console;
+﻿global using Morsley.UK.ZAP.Common;
+global using Morsley.UK.ZAP.SwaggerSplitter.Console;
 global using System.Text.Json;

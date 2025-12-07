@@ -1,0 +1,8 @@
+{
+    "ContextName": "MyTestContext",
+    "ContextUrl": "https://localhost:5001",
+    "ContextIncludePath": "/api/.*",
+    "ContextExcludePath": "/api/logout",
+    "OpenApiTargetUrl": "https://localhost:5001",
+    "SpiderUrl": "https://localhost:5001/health"
+}

@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Morsley.UK.ZAP.Common\Morsley.UK.ZAP.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="swagger\" />
+  </ItemGroup>
+
 </Project>

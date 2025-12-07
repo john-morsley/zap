@@ -56,8 +56,7 @@ internal static class Arguments
     }
 
     internal static void Process(string[] args, ref string? swaggerUrl)
-    {
-        Display.Blank();
+    {        
         Display.Mute("Do we have arguments passed in?");
 
         if (!args.Any())

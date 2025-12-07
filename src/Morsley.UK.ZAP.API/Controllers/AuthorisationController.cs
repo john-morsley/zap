@@ -35,7 +35,7 @@ public class AuthorisationController : ControllerBase
                  new Claim("jti", Guid.NewGuid().ToString()),
                  new Claim("iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
              }),
-             Expires = DateTime.UtcNow.AddSeconds(30),
+             Expires = DateTime.UtcNow.AddMinutes(10),
              SigningCredentials = new SigningCredentials(
                  new SymmetricSecurityKey(_key),
                  SecurityAlgorithms.HmacSha256Signature)

@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/Morsley.UK.ZAP.Common/Morsley.UK.ZAP.Common.csproj" Id="8227885a-b469-46d7-8d56-323bd0a29b48" />
     <Project Path="src/Morsley.UK.ZAP.API/Morsley.UK.ZAP.API.csproj" />
+    <Project Path="src/Morsley.UK.ZAP.Console/Morsley.UK.ZAP.Console.csproj" Id="3712104a-516d-47bf-ba6f-1b126f89ff7d" />
     <Project Path="src/Morsley.UK.ZAP.SwaggerSplitter.Console/Morsley.UK.ZAP.SwaggerSplitter.Console.csproj" Id="fcd06643-0185-4722-9367-2d0fdecfdb90" />
   </Folder>
   <Folder Name="/tests/" />
